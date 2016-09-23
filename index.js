@@ -195,7 +195,9 @@ function receivedMessage(event) {
       default:
         sendTextMessage(senderID, messageText);
     } */
-    sendTextMessage(senderID, "Toi da nhan duoc");
+    if (messageText === "postback") {
+        sendPostback(senderID, messageText)
+    } else sendTextMessage(senderID, "Toi da nhan duoc");
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Toi da nhan duoc tin nhan co dinh kem tep");
   }
@@ -231,9 +233,42 @@ function sendTextMessage(recipientId, messageText) {
       id: recipientId
     },
     message: {
-      text: messageText,
-      metadata: "DEVELOPER_DEFINED_METADATA"
+      text: messageText
     }
+  };
+
+  callSendAPI(messageData);
+}
+
+function sendPostback(recipientId, messageText){
+
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+
+    message:{
+      attachment:{
+        type:"template",
+        payload:{
+          template_type:"generic",
+          elements:[
+            {
+              title:messageText,
+              subtitle:messageText,
+              buttons:[
+                {
+                  type:"postback",
+                  title:"Xem",
+                  payload:"DEVELOPER_DEFINED_PAYLOAD"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+
   };
 
   callSendAPI(messageData);

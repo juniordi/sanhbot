@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({extended: false}))
 // Process application/json
 app.use(bodyParser.json())
 
+var PAGE_ACCESS_TOKEN = "EAASYDIKLwzQBABj9T2HVFTeb4UanDDZBtecPcUIQINXv8eMU2ZBD0XiO5nLc1c1aJbvwkf0OEKeDAn4eTJK4hBlJTLcnHNw84XJSZCUzMcifPiIE3gsBFU8oSrx6ZBitPLTRGy1LZAlZCmUJ8jYV9ZCwc7a93xhzbGotqkfw3pKCQZDZD"
+
 // Index route
 app.get('/', function (req, res) {
     res.send('Access https://m.me/sanhonline to chat')

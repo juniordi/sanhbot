@@ -12,6 +12,144 @@ app.use(bodyParser.json())
 
 var PAGE_ACCESS_TOKEN = "EAASYDIKLwzQBABj9T2HVFTeb4UanDDZBtecPcUIQINXv8eMU2ZBD0XiO5nLc1c1aJbvwkf0OEKeDAn4eTJK4hBlJTLcnHNw84XJSZCUzMcifPiIE3gsBFU8oSrx6ZBitPLTRGy1LZAlZCmUJ8jYV9ZCwc7a93xhzbGotqkfw3pKCQZDZD"
 
+var a_catalogue = [
+    {
+        "description": "htkk là gì",
+        "catalogue":[" htkk "],
+        "keyword": [[" là gì ", " giới thiệu ", " là cái gì "]],
+        "answer": ["Ứng dụng HTKK thuộc bản quyền của Tổng cục thuế. Đây là phần mềm được phát hành miễn phí cho các cơ sở SXKD nhằm hỗ trợ các đơn vị trong quá trình kê khai thuế", "Bạn có thể hỏi: phiên bản mới nhất của HTKK là bao nhiêu? để biết phiên bản mới nhất", "Tải phiên bản HTKK mới nhất tại http://adf.ly/1aAYdJ"]
+    },
+    {
+        "description": "phiên bản htkk",
+        "catalogue":[" htkk "],
+        "keyword": [[" phiên bản ", " version ", " bản "]],
+        "answer": ["function:htkk_version"]
+    },
+    {
+        "description": "download htkk",
+        "catalogue":[" htkk "],
+        "keyword": [[" download ", " tải "]],
+        "answer": ["Bạn tải phiên bản HTKK mới nhất tại http://adf.ly/1aAYdJ"]
+    },
+    {
+        "description": "sử dụng htkk lỗi",
+        "catalogue":[" htkk "],
+        "keyword": [[" lập tk ", " lập tờ khai ", " làm tk ", " làm tờ khai ", " khai tk ", " khai tờ khai "], " lỗi "],
+        "answer": ["Bạn hãy mô tả chi tiết lỗi nhé. VD: vào HTKK báo lỗi error, lập tk bổ sung trên htkk báo lỗi error, không vào được htkk, bctc không nhập được số âm trên htkk..."]
+    },
+    {
+        "description": "vào htkk báo lỗi error",
+        "catalogue":[" htkk "],
+        "keyword": [" lỗi ", " error "],
+        "answer": ["Bạn xem lại quyền user trên máy tính sử dụng đã đủ quyền chưa? Hoặc bạn phải restart lại máy tính sau khi cài đặt HTKK"]
+    },
+    {
+        "description": "lập tk bổ sung trên htkk báo lỗi error",
+        "catalogue":[" htkk "],
+        "keyword": [" lỗi ", " error ", [" tk ", " tờ khai "], [" bổ sung ", " bổ xung "]],
+        "answer": ["Vào lập tk bổ sung trên HTKK bị lỗi error thì bạn xem lại định dạng ngày tháng trên máy tính nhé","Làm tương tự như này http://lehoangdieu.blogspot.com/2016/02/khac-phuc-loi-sai-ngay-thang-nam-sinh.html"]
+    },
+    {
+        "description": "HTKK không nhập được số âm",
+        "catalogue":[" htkk "],
+        "keyword": [" lỗi ", [" không nhập được số âm ", " không nhập số âm được "]],
+        "answer": ["Bạn khắc phục như ở đây http://lehoangdieu.blogspot.com/2016/02/khac-phuc-loi-khong-nhap-uoc-so-am-tren.html. Nếu vẫn không nhập được số âm thì lỗi do HTKK"]
+    },
+    {
+        "description": "HTKK không nhập được số âm trên BCTC",
+        "catalogue":[" htkk "],
+        "keyword": [" lỗi ", [" không nhập được số âm ", " không nhập số âm được "], [" báo cáo tài chính ", " bctc "]],
+        "answer": ["Bạn khắc phục như ở đây http://lehoangdieu.blogspot.com/2016/02/khac-phuc-loi-khong-nhap-uoc-so-am-tren.html. Nếu vẫn không nhập được số âm thì lỗi do HTKK"]
+    },
+    {
+        "description": "không vào được HTKK",
+        "catalogue": [" htkk "],
+        "keyword": [" lỗi ", [" không vào ", " đứng im "]],
+        "answer": ["Bạn khắc phục như ở đây http://lehoangdieu.blogspot.com/2016/02/nhap-mst-nhung-khong-vao-uoc-htkk.html"]
+    },
+    {
+        "description": "HTKK báo lỗi chưa đến thời kỳ làm bc",
+        "catalogue": [" htkk "],
+        "keyword": [" lỗi ", [" chưa đến thời kỳ ", " chưa đến kỳ "], [" làm báo cáo ", " làm bc "]],
+        "answer": ["Bạn xem lại năm tài chính đã khai báo trên HTKK (vào HỆ THỐNG > THÔNG TIN DN) hoặc ngày tháng trên máy tính bạn đang bị sai"]
+    },
+    {
+        "description": "Cài đặt ngày tháng để sử dụng HTKK như ý",
+        "catalogue": [" htkk "],
+        "keyword": [[" ngày tháng ", " ngày giờ "], [" cài đặt ", " thiết lập "]],
+        "answer": ["Bạn làm tương tự như này http://lehoangdieu.blogspot.com/2016/02/khac-phuc-loi-sai-ngay-thang-nam-sinh.html"]
+    },
+    {
+        "description": "Cài đặt ngày tháng để sử dụng HTKK như ý",
+        "catalogue": [" htkk "],
+        "keyword": [[" cài ", " setup "]],
+        "answer": ["Bạn tải HTKK tại http://adf.ly/1aAYdJ, cài đặt thì dễ lắm, cứ Next next next OK là xong :)"]
+    },
+
+
+    {
+        "description": "itaxviewer là gì",
+        "catalogue":[[" itaxviewer ", " itaxview ", " itax "]],
+        "keyword": [[" là gì ", " giới thiệu ", " là cái gì "]],
+        "answer": ["iTaxViewer là ứng dụng hỗ trợ đọc, xác minh tờ khai, thông báo thuế định dạng XML. Tải phiên bản mới nhất tại đây http://adf.ly/1aAYfe"]
+    },
+    {
+        "description": "phiên bản itaxviewer",
+        "catalogue":[[" itaxviewer ", " itaxview ", " itax "]],
+        "keyword": [[" phiên bản ", " version ", " bản "]],
+        "answer": ["Tôi chưa cập nhật phiên bản mới nhất của iTaxViewer là bao nhiêu, nhưng bạn có thể tải phiên bản mới nhất tại http://adf.ly/1aAYfe"]
+    },
+    {
+        "description": "download itaxviewer",
+        "catalogue":[[" itaxviewer ", " itaxview ", " itax "]],
+        "keyword": [[" download ", " tải "]],
+        "answer": ["Tải phiên bản mới nhất itaxviewer tại http://adf.ly/1aAYfe"]
+    },
+    {
+        "description": "ihtkk là gì",
+        "catalogue": [" ihtkk ", " web kekhaithue ", " web kê khai ", " website kekhaithue ", " website kê khai ", " web nhantokhai ", " website nhantokhai"],
+        "keyword": [[" là gì ", " giới thiệu ", " là cái gì ", " website ", " trang web "]],
+        "answer": ["iHTKK là hệ thống kê khai thuế, nộp tờ khai thuế thông qua trang web của Tổng Cục Thuế http://kekhaithue.gdt.gov.vn"]
+    },
+    {
+        "description": "phiên bản ihtkk",
+        "catalogue": [" ihtkk "],
+        "keyword": [[" phiên bản ", " version ", " bản "]],
+        "answer": ["Bạn vào trang http://kekhaithue.gdt.gov.vn và xem góc trên phải của trang để biết phiên bản hiện tại ihtkk nhé.\nTôi rất tiếc vì sự bất tiện này"]
+    },
+    {
+        "description": "download ihtkk",
+        "catalogue": [" ihtkk "],
+        "keyword": [[" download ", " tải "]],
+        "answer": ["iHTKK là hệ thống kê khai thuế, nộp tờ khai thuế thông qua trang web của Tổng Cục Thuế http://kekhaithue.gdt.gov.vn. Bạn không cần download :)"]
+    },
+    {
+        "description": "chức năng của java",
+        "catalogue": [" java "],
+        "keyword": [[" chức năng ", " mục đích ", " tác dụng "], " cài ", [" làm gì ", " để làm gì ", " sao "]],
+        "answer": ["Java có tác dụng trong khai và nộp thuế điện tử: Dùng để chọn tệp tờ khai, ký tệp tờ khai, ký giấy nộp tiền và xác nhận để đổi mật khẩu"]
+    },
+    {
+        "description": "cài đặt java",
+        "catalogue": [" java "],
+        "keyword": [[" cài ", " setup ", " thiết lập ", " cấu hình "]],
+        "answer": ["Bạn xem hướng dẫn cài và cấu hình java ở đây nhé http://lehoangdieu.blogspot.com/2016/02/thiet-lap-java-e-khai-nop-thue.html"]
+    },
+    {
+        "description": "nâng cấp java",
+        "catalogue": [" java "],
+        "keyword": [[" nâng cấp ", " update "]],
+        "answer": ["Bạn xem khi nào phải nâng cấp và cách nâng cấp java ở đây https://youtu.be/sAp46t5dxFY"]
+    },
+    {
+        "description": "lỗi java",
+        "catalogue": [" java "],
+        "keyword": [[" lỗi ", " trục trặc "]],
+        "answer": ["Nếu java bị lỗi bạn sẽ: Không chọn được tệp tờ khai, không ký được tệp tờ khai, không ký được giấy nộp tiền và không đổi được mật khẩu. Bạn xem hướng dẫn cài và cấu hình java ở đây nhé http://lehoangdieu.blogspot.com/2016/02/thiet-lap-java-e-khai-nop-thue.html"]
+    }
+]
+
+
 // Index route
 app.get('/', function (req, res) {
     res.send('Access https://m.me/sanhonline to chat')
@@ -196,7 +334,10 @@ function receivedMessage(event) {
         sendTextMessage(senderID, messageText);
     } */
     if (messageText === "postback") {
-        sendPostback(senderID, messageText)
+        for (var i = 0; i < 10; i++){
+          sendPostback(senderID, a_catalogue[i]["description"], i)
+        }
+        //sendPostback(senderID, messageText)
     } else sendTextMessage(senderID, "Toi da nhan duoc");
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Toi da nhan duoc tin nhan co dinh kem tep");
@@ -224,7 +365,7 @@ function receivedPostback(event) {
 
   // When a postback is called, we'll send a message back to the sender to 
   // let them know it was successful
-  sendTextMessage(senderID, "Received postback");
+  sendTextMessage(senderID, a_catalogue[payload]["answer"]);
 }
 
 function sendTextMessage(recipientId, messageText) {
@@ -240,7 +381,7 @@ function sendTextMessage(recipientId, messageText) {
   callSendAPI(messageData);
 }
 
-function sendPostback(recipientId, messageText){
+function sendPostback(recipientId, messageText, item){
 
   var messageData = {
     recipient: {
@@ -255,12 +396,12 @@ function sendPostback(recipientId, messageText){
           elements:[
             {
               title:messageText,
-              subtitle:messageText,
+              subtitle:" ",
               buttons:[
                 {
                   type:"postback",
                   title:"Xem",
-                  payload:"DEVELOPER_DEFINED_PAYLOAD"
+                  payload:item
                 }
               ]
             }

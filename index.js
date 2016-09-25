@@ -399,6 +399,8 @@ function sendPostback(recipientId, messageText, item){
           elements:[
             {
               title:messageText,
+              item_url:" ",
+              image_url:" ",
               subtitle:" ",
               buttons:[
                 {

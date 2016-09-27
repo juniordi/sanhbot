@@ -339,11 +339,17 @@ function receivedMessage(event) {
           sendPostback(senderID, a_catalogue[i]["description"], i)
         }
         //sendPostback(senderID, messageText)
+    } else if (messageText === "generic") {
+        //for (var i = 0; i < 10; i++){
+          sendGenericMessage(senderID, a_catalogue, 5)
+        //}
     } else sendTextMessage(senderID, "Toi da nhan duoc");
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Toi da nhan duoc tin nhan co dinh kem tep");
   }
 } //end function receivedMessage
+
+
 
 /*
  * Postback Event
@@ -370,6 +376,50 @@ function receivedPostback(event) {
     sendTextMessage(senderID, a_catalogue[payload]["answer"][i]);
   }
 }
+
+/*
+ * Send a Structured Message (Generic Message type) using the Send API.
+ *
+ */
+function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, item: so ban ghi can hien thi
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: "rift",
+            subtitle: "Next-generation virtual reality",
+            item_url: "https://www.oculus.com/en-us/rift/",               
+            image_url: "/assets/rift.png",
+            buttons: [{
+              type: "postback",
+              title: "Call Postback",
+              payload: "Payload for first bubble",
+            }],
+          }, {
+            title: "touch",
+            subtitle: "Your Hands, Now in VR",
+            item_url: "https://www.oculus.com/en-us/touch/",               
+            image_url: "/assets/touch.png",
+            buttons: [{
+              type: "postback",
+              title: "Call Postback",
+              payload: "Payload for second bubble",
+            }]
+          }]
+        }
+      }
+    }
+  };  
+
+  callSendAPI(messageData);
+}
+
 
 function sendTextMessage(recipientId, messageText) {
   var messageData = {

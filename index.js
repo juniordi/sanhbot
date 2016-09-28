@@ -190,6 +190,9 @@ app.post('/webhook', function (req, res) {
       var pageID = pageEntry.id;
       var timeOfEvent = pageEntry.time;
 
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8] //tim thay tung nay kq
+        var arr_help = arr
+
       // Iterate over each messaging event
       /*pageEntry.messaging.forEach(function(messagingEvent) {
         if (messagingEvent.optin) {
@@ -344,8 +347,6 @@ function receivedMessage(event) {
         //sendPostback(senderID, messageText)
     } else if (messageText === "generic") {
         //for (var i = 0; i < 10; i++){
-        var arr = [1, 2, 3, 4, 5, 6, 7, 8]
-        var arr_help = arr
         sendGenericMessage(senderID, arr_help, item_show)
         //}
     } else sendTextMessage(senderID, "Toi da nhan duoc");

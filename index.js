@@ -341,7 +341,7 @@ function receivedMessage(event) {
         //sendPostback(senderID, messageText)
     } else if (messageText === "generic") {
         //for (var i = 0; i < 10; i++){
-          sendGenericMessage(senderID, a_catalogue, 5)
+          sendGenericMessage(senderID, [1, 2, 5])
         //}
     } else sendTextMessage(senderID, "Toi da nhan duoc");
   } else if (messageAttachments) {
@@ -381,7 +381,27 @@ function receivedPostback(event) {
  * Send a Structured Message (Generic Message type) using the Send API.
  *
  */
-function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, item: so ban ghi can hien thi
+function sendGenericMessage(recipientId, arr) { //arr: mang can duyet, item: so ban ghi can hien thi
+  var tmp
+  var json_tmp = []
+  for (var i = 0; i < arr.length; i++){
+	  	tmp = '{' +
+	  		'"title":"' + a_catalogue[arr[i]]["description"] + '",' +
+	  		'"subtitle":"",' +
+	  		'"item_url":"",' +
+	  		'"image_url":"",' +
+	  		'"buttons": [{' +
+	  		           '"type":"postback",' +
+	  		           '"title":"Xem",' +
+	  		           '"payload":' + arr[i] +
+	  		           '}]' +
+	  		'}'
+		json_tmp.push(JSON.parse(tmp))
+
+  }
+  //tmp = tmp.slice(0, tmp.length-1)
+
+
   var messageData = {
     recipient: {
       id: recipientId
@@ -391,27 +411,7 @@ function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, ite
         type: "template",
         payload: {
           template_type: "generic",
-          elements: [{
-            title: "rift",
-            subtitle: "Next-generation virtual reality",
-            item_url: "https://www.oculus.com/en-us/rift/",               
-            image_url: "/assets/rift.png",
-            buttons: [{
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for first bubble",
-            }],
-          }, {
-            title: "touch",
-            subtitle: "Your Hands, Now in VR",
-            item_url: "https://www.oculus.com/en-us/touch/",               
-            image_url: "/assets/touch.png",
-            buttons: [{
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for second bubble",
-            }]
-          }]
+          elements: json_tmp
         }
       }
     }

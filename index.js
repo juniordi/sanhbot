@@ -179,6 +179,10 @@ app.listen(app.get('port'), function() {
 app.post('/webhook', function (req, res) {
   var data = req.body;
 
+          var arr = [1, 2, 3, 4, 5, 6, 7, 8]
+        var item_show = 3
+
+
   // Make sure this is a page subscription
   if (data.object == 'page') {
     // Iterate over each entry
@@ -341,7 +345,7 @@ function receivedMessage(event) {
         //sendPostback(senderID, messageText)
     } else if (messageText === "generic") {
         //for (var i = 0; i < 10; i++){
-          sendGenericMessage(senderID, [1, 2, 5])
+        sendGenericMessage(senderID, arr, item_show)
         //}
     } else sendTextMessage(senderID, "Toi da nhan duoc");
   } else if (messageAttachments) {
@@ -366,30 +370,36 @@ function receivedPostback(event) {
   // The 'payload' param is a developer-defined field which is set in a postback 
   // button for Structured Messages. 
   var payload = event.postback.payload;
-
+  var button_title = event.postback.title
   /*console.log("Received postback for user %d and page %d with payload '%s' " + 
     "at %d", senderID, recipientID, payload, timeOfPostback);*/
 
   // When a postback is called, we'll send a message back to the sender to 
   // let them know it was successful
-  for (var i = 0; i < a_catalogue[payload]["answer"].length; i++){
-    sendTextMessage(senderID, a_catalogue[payload]["answer"][i]);
-  }
+  if (button_title = "Tiếp tục") {
+  	sendGenericMessage(senderID, arr, item_show)
+  } else {
+	  sendTextMessage(senderID, "Bạn đã hỏi: " + a_catalogue[payload]["description"])
+	  for (var i = 0; i < a_catalogue[payload]["answer"].length; i++){
+	    sendTextMessage(senderID, a_catalogue[payload]["answer"][i]);
+	  }
+	}
 }
 
 /*
  * Send a Structured Message (Generic Message type) using the Send API.
  *
  */
-function sendGenericMessage(recipientId, arr) { //arr: mang can duyet, item: so ban ghi can hien thi
+function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, item: so ban ghi can hien thi
   var tmp
   var json_tmp = []
-  for (var i = 0; i < arr.length; i++){
+  var length_item = (arr.length >= item) ? item : arr.length
+  for (var i = 0; i < length_item; i++){
 	  	tmp = '{' +
 	  		'"title":"' + a_catalogue[arr[i]]["description"] + '",' +
 	  		'"subtitle":"",' +
 	  		'"item_url":"",' +
-	  		'"image_url":"",' +
+	  		'"image_url":"https://c4.staticflickr.com/9/8138/29980622835_735846730d_b.jpg",' +
 	  		'"buttons": [{' +
 	  		           '"type":"postback",' +
 	  		           '"title":"Xem",' +
@@ -398,6 +408,21 @@ function sendGenericMessage(recipientId, arr) { //arr: mang can duyet, item: so 
 	  		'}'
 		json_tmp.push(JSON.parse(tmp))
 
+  }
+  if (arr.length > item) {
+	  	tmp = '{' +
+	  		'"title":"Xem các câu hỏi trợ giúp khác"' +
+	  		'"subtitle":"",' +
+	  		'"item_url":"",' +
+	  		'"image_url":"",' +
+	  		'"buttons": [{' +
+	  		           '"type":"postback",' +
+	  		           '"title":"Tiếp tục",' +
+	  		           '"payload":""' +
+	  		           '}]' +
+	  		'}'
+		json_tmp.push(JSON.parse(tmp))
+  	arr.splice(0, item)
   }
   //tmp = tmp.slice(0, tmp.length-1)
 

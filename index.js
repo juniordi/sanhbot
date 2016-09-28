@@ -412,7 +412,7 @@ function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, ite
   }
   if (arr.length > item) {
 	  	tmp = '{' +
-	  		'"title":"Xem các câu hỏi trợ giúp khác"' +
+	  		'"title":"Xem các câu hỏi trợ giúp khác",' +
 	  		'"subtitle":"",' +
 	  		'"item_url":"",' +
 	  		'"image_url":"",' +

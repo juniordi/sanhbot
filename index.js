@@ -191,7 +191,7 @@ app.post('/webhook', function (req, res) {
       var timeOfEvent = pageEntry.time;
 
         var arr = [1, 2, 3, 4, 5, 6, 7, 8] //tim thay tung nay kq
-        var arr_help = arr
+        arr_help = arr
 
       // Iterate over each messaging event
       /*pageEntry.messaging.forEach(function(messagingEvent) {

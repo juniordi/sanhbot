@@ -149,7 +149,8 @@ var a_catalogue = [
         "answer": ["Nếu java bị lỗi bạn sẽ: Không chọn được tệp tờ khai, không ký được tệp tờ khai, không ký được giấy nộp tiền và không đổi được mật khẩu. Bạn xem hướng dẫn cài và cấu hình java ở đây nhé http://lehoangdieu.blogspot.com/2016/02/thiet-lap-java-e-khai-nop-thue.html"]
     }
 ]
-
+var arr_help= []
+var item_show = 3
 
 // Index route
 app.get('/', function (req, res) {
@@ -179,8 +180,6 @@ app.listen(app.get('port'), function() {
 app.post('/webhook', function (req, res) {
   var data = req.body;
 
-          var arr = [1, 2, 3, 4, 5, 6, 7, 8]
-        var item_show = 3
 
 
   // Make sure this is a page subscription
@@ -345,7 +344,9 @@ function receivedMessage(event) {
         //sendPostback(senderID, messageText)
     } else if (messageText === "generic") {
         //for (var i = 0; i < 10; i++){
-        sendGenericMessage(senderID, arr, item_show)
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8]
+        var arr_help = arr
+        sendGenericMessage(senderID, arr_help, item_show)
         //}
     } else sendTextMessage(senderID, "Toi da nhan duoc");
   } else if (messageAttachments) {
@@ -377,7 +378,7 @@ function receivedPostback(event) {
   // When a postback is called, we'll send a message back to the sender to 
   // let them know it was successful
   if (button_title = "Tiếp tục") {
-  	sendGenericMessage(senderID, arr, item_show)
+  	sendGenericMessage(senderID, arr_help, item_show)
   } else {
 	  sendTextMessage(senderID, "Bạn đã hỏi: " + a_catalogue[payload]["description"])
 	  for (var i = 0; i < a_catalogue[payload]["answer"].length; i++){

@@ -1145,9 +1145,9 @@ var a_tieumuc = [
 
 ]
 
-var a_sorry = 'Rất tiếc vì tôi chưa có dữ liệu bạn cần. Hãy thông cảm là tôi chỉ hiểu câu hỏi khi bạn viết tiếng Việt có dấu và hạn chế viết tắt nhé (Gõ "Trợ giúp" để xem hướng dẫn)'
+var a_sorry = 'Rất tiếc vì tôi chưa có dữ liệu bạn cần. Hãy thông cảm là tôi chỉ hiểu câu hỏi khi bạn viết tiếng Việt có dấu và hạn chế viết tắt nhé. Bạn có thể gõ "Trợ giúp" để xem hướng dẫn'
 var url_htkk = 'http://www.gdt.gov.vn/wps/portal/home/hotrokekhai'
-var item_show = 3 //số câu hỏi trợ giúp sẽ hiển thị nếu ko tìm thấy câu trả lời ng dùng đưa vào
+var item_show = 5 //số câu hỏi trợ giúp sẽ hiển thị nếu ko tìm thấy câu trả lời ng dùng đưa vào
 
 function check(str, obj){ //tim duoc bao nhieu tu khoa trong obj
     var kq = 0
@@ -1338,7 +1338,6 @@ function tinh_phat(str){
 
     //var tmp_so_ngay
     var tmp_so_tien_phat
-    //var tmp
 
     kq = [] //reset array kq
     //chia thanh cac giai doan thoi gian [ ;30/6/2013] [1/7/2013; 31/12/2014] [1/1/2015; 30/6/2016] [1/7/2016; ]
@@ -1789,10 +1788,12 @@ function receivedPostback(event) {
   	arr_split.pop() //delete phan tu "xemtiep" ra khoi mang
   	sendGenericMessage(senderID, arr_split, item_show)
   } else {
-	  sendTextMessage(senderID, "Bạn đã hỏi: " + a_catalogue[payload]["description"])
+    var tmp = []
+	  tmp.push("Bạn đã hỏi: " + a_catalogue[payload]["description"])
 	  for (var i = 0; i < a_catalogue[payload]["answer"].length; i++){
-	    sendTextMessage(senderID, a_catalogue[payload]["answer"][i]);
+	    tmp.push(a_catalogue[payload]["answer"][i]);
 	  }
+    sendTextMessages(senderID, tmp, 0)
 	}
 }
 
@@ -1809,7 +1810,7 @@ function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, ite
 	  		'"title":"' + a_catalogue[arr[i]]["description"] + '",' +
 	  		'"subtitle":"",' +
 	  		'"item_url":"",' +
-	  		'"image_url":"https://c4.staticflickr.com/9/8138/29980622835_735846730d_b.jpg",' +
+	  		'"image_url":"https://c4.staticflickr.com/9/8138/29980622835_735846730d_m.jpg",' +
 	  		'"buttons": [{' +
 	  		           '"type":"postback",' +
 	  		           '"title":"Xem",' +

@@ -420,7 +420,7 @@ function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, ite
 	  		'"buttons": [{' +
 	  		           '"type":"postback",' +
 	  		           '"title":"Tiếp tục",' +
-	  		           '"payload":' + arr.join() +
+	  		           '"payload":"' + arr.join() + '"' +
 	  		           '}]' +
 	  		'}'
 		json_tmp.push(JSON.parse(tmp))

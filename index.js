@@ -371,6 +371,7 @@ function receivedPostback(event) {
   // button for Structured Messages. 
   var payload = event.postback.payload;
   var button_title = event.postback.title
+  sendTextMessage(senderID, button_title);
   /*console.log("Received postback for user %d and page %d with payload '%s' " + 
     "at %d", senderID, recipientID, payload, timeOfPostback);*/
 

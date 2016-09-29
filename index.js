@@ -370,15 +370,16 @@ function receivedPostback(event) {
   // The 'payload' param is a developer-defined field which is set in a postback 
   // button for Structured Messages. 
   var payload = event.postback.payload;
-  var button_title = event.buttons[0].title
-  sendTextMessage(senderID, button_title);
+
+
   /*console.log("Received postback for user %d and page %d with payload '%s' " + 
     "at %d", senderID, recipientID, payload, timeOfPostback);*/
 
   // When a postback is called, we'll send a message back to the sender to 
   // let them know it was successful
-  if (button_title == "Tiếp tục") {
+  if (payload.substr(-8, 8) === ",xemtiep") {
   	var arr_split = payload.split(",")
+  	arr_split.pop() //delete phan tu "xemtiep" ra khoi mang
   	sendGenericMessage(senderID, arr_split, item_show)
   } else {
 	  sendTextMessage(senderID, "Bạn đã hỏi: " + a_catalogue[payload]["description"])
@@ -421,7 +422,7 @@ function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, ite
 	  		'"buttons": [{' +
 	  		           '"type":"postback",' +
 	  		           '"title":"Tiếp tục",' +
-	  		           '"payload":"' + arr.join() + '"' +
+	  		           '"payload":"' + arr.join() + ',xemtiep"' +
 	  		           '}]' +
 	  		'}'
 		json_tmp.push(JSON.parse(tmp))

@@ -377,7 +377,8 @@ function receivedPostback(event) {
   // When a postback is called, we'll send a message back to the sender to 
   // let them know it was successful
   if (button_title = "Tiếp tục") {
-  	sendGenericMessage(senderID, payload, item_show)
+  	var arr_split = payload.split(",")
+  	sendGenericMessage(senderID, arr_split, item_show)
   } else {
 	  sendTextMessage(senderID, "Bạn đã hỏi: " + a_catalogue[payload]["description"])
 	  for (var i = 0; i < a_catalogue[payload]["answer"].length; i++){
@@ -419,7 +420,7 @@ function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, ite
 	  		'"buttons": [{' +
 	  		           '"type":"postback",' +
 	  		           '"title":"Tiếp tục",' +
-	  		           '"payload":' + arr +
+	  		           '"payload":' + arr.join() +
 	  		           '}]' +
 	  		'}'
 		json_tmp.push(JSON.parse(tmp))

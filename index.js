@@ -376,7 +376,7 @@ function receivedPostback(event) {
 
   // When a postback is called, we'll send a message back to the sender to 
   // let them know it was successful
-  if (button_title = "Tiếp tục") {
+  if (button_title == "Tiếp tục") {
   	var arr_split = payload.split(",")
   	sendGenericMessage(senderID, arr_split, item_show)
   } else {

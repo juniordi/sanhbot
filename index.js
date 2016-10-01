@@ -1810,7 +1810,7 @@ function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, ite
 	  		'"title":"' + a_catalogue[arr[i]]["description"] + '",' +
 	  		'"subtitle":"",' +
 	  		'"item_url":"",' +
-	  		'"image_url":"https://c4.staticflickr.com/9/8138/29980622835_735846730d_m.jpg",' +
+	  		'"image_url":"https://c4.staticflickr.com/9/8138/29980622835_735846730d.jpg",' +
 	  		'"buttons": [{' +
 	  		           '"type":"postback",' +
 	  		           '"title":"Xem",' +
@@ -1826,7 +1826,7 @@ function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, ite
 	  		'"title":"Xem các câu hỏi trợ giúp khác",' +
 	  		'"subtitle":"",' +
 	  		'"item_url":"",' +
-	  		'"image_url":"https://c1.staticflickr.com/9/8125/29372298304_694c338118_m.jpg",' +
+	  		'"image_url":"https://c1.staticflickr.com/9/8125/29372298304_a83d9dfc80_o.png",' +
 	  		'"buttons": [{' +
 	  		           '"type":"postback",' +
 	  		           '"title":"Tiếp tục",' +

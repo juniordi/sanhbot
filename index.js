@@ -142,7 +142,7 @@ var a_catalogue = [
     {
         "description": "phiên bản htkk",
         "catalogue":[" htkk "],
-        "keyword": [[" phiên bản ", " version ", " bản "]],
+        "keyword": [[" phiên bản ", " version ", " bản ", " bao nhiêu "]],
         "answer": ["function:htkk_version"]
     },
     {
@@ -349,7 +349,7 @@ var a_catalogue = [
         "description": "tỷ lệ tính tiền chậm nộp",
         "catalogue": [[" chậm nộp ", " nộp chậm "]],
         "keyword": [" tỷ lệ "],
-        "answer": ["Tỷ lệ tính tiền chậm nộp trước ngày 01/01/2015 là 0,05%/ngày với các khoản nợ dưới 90 ngày, từ 90 ngày sẽ tính 0,07%/ngày. Từ ngày 01/01/2015 tính phạt 0,05%/ngày. Từ ngày 01/7/2016 là 0,03%/ngày"]
+        "answer": ["Từ hạn nộp đến 30/6/2013: Tính theo tỷ lệ 0,05% (quy định của Luật số 78/2006/QH11)", "Từ ngày 1/7/2013 đến 31/12/2014: tỷ lệ 0,05% kể từ ngày hết thời hạn nộp thuế đến ngày thứ 90; 0,07% kể từ ngày chậm nộp thứ 91 trở đi. (quy định của Luật số 21/2012/QH13)", "Từ ngày 1/1/2015 - 30/6/2016: Tính theo tỷ lệ 0,05% (quy định của Luật số 71/2014/QH13)"]
     },
     {
         "description": "cách tính phạt chậm nộp",
@@ -381,7 +381,7 @@ var a_catalogue = [
     {
         "description": "Khai thuế qua mạng như thế nào",
         "catalogue": [[" khai thuế ", " kê khai ", " nộp tờ khai ", " nộp tk ", " gửi tk ", " gửi tờ khai "]],
-        "keyword": [[" thế nào ", " bằng cách nào ", " hướng dẫn ", " kiểu gì ", " làm cách nào ", " như nào "]],
+        "keyword": [[" thế nào ", " bằng cách nào ", " hướng dẫn ", " kiểu gì ", " làm cách nào ", " như nào ", " cách "]],
         "answer": ["Để khai thuế qua mạng bạn phải:\n- Cài đặt các phần mềm cần thiết.\n- Có chứng thư số\n- Đăng ký tài khoản trên trang http://kekhaithue.gdt.gov.vn \n- Bạn có thể xem cách nộp tại đây https://youtu.be/IMeg6n6reI0"]
     },
     {

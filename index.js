@@ -1695,7 +1695,8 @@ function receivedMessage(event) {
             }
             if (a_item < 0 && normal_item < 0) {//ko tim thay
                 if (a_kq_tim_trong_catalogue.length > 0) {
-                  sendGenericMessage(sender, a_kq_tim_trong_catalogue, item_show)
+                	sendTextMessage(sender, "Tôi chưa có dữ liệu bạn tìm. Dưới đây là các kết quả tương tự")
+                  	sendGenericMessage(sender, a_kq_tim_trong_catalogue, item_show)
                 } else sendTextMessage(sender, a_sorry)         
             } else {
                 var array_item = a_item >= 0 ? a_catalogue[a_item]["answer"] : a[normal_item]["answer"]
@@ -1788,12 +1789,14 @@ function receivedPostback(event) {
   	arr_split.pop() //delete phan tu "xemtiep" ra khoi mang
   	sendGenericMessage(senderID, arr_split, item_show)
   } else {
-    var tmp = []
-	  tmp.push("Bạn đã hỏi: " + a_catalogue[payload]["description"])
-	  for (var i = 0; i < a_catalogue[payload]["answer"].length; i++){
-	    tmp.push(a_catalogue[payload]["answer"][i]);
-	  }
-    sendTextMessages(senderID, tmp, 0)
+    	var tmp = []
+    	var tmp_show
+    	tmp.push("Bạn đã hỏi: " + a_catalogue[payload]["description"])
+    	for (var i = 0; i < a_catalogue[payload]["answer"].length; i++){
+    		tmp_show = (a_catalogue[payload]["answer"][i].slice(0,8) === 'function') ? 'Bạn hãy gõ "' + a_catalogue[payload]["description"] + '" để xem câu trả lời' : a_catalogue[payload]["answer"][i]
+    		tmp.push(tmp_show);
+    	}
+    	sendTextMessages(senderID, tmp, 0)
 	}
 }
 
@@ -1806,7 +1809,7 @@ function sendGenericMessage(recipientId, arr, item) { //arr: mang can duyet, ite
   var json_tmp = []
   var length_item = (arr.length >= item) ? item : arr.length
   for (var i = 0; i < length_item; i++){
-	  	tmp = '{' +
+  		tmp = '{' +
 	  		'"title":"' + a_catalogue[arr[i]]["description"] + '",' +
 	  		'"subtitle":"",' +
 	  		'"item_url":"",' +

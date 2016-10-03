@@ -1,6 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
+var cheerio = require('cheerio') //lib de thao tac voi HTML DOM nhu jQuery
 var app = express()
 
 app.set('port', (process.env.PORT || 8080))
